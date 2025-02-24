@@ -8,6 +8,7 @@ import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 
 import com.constants.Browser;
+import com.constants.Browser.*;
 import com.ui.pages.HomePage;
 
 import com.utility.*;
@@ -20,13 +21,13 @@ public class TestBase {
 
 	@Parameters({ "browser", "isLambdaTest", "isHeadless" })
 	@BeforeMethod
-	public void setup(@Optional("chrome") String browser, ITestResult result, @Optional("false") boolean isLambdaTest,
+	public void setup(@Optional("CHROME") String browser, ITestResult result, @Optional("false") boolean isLambdaTest,
 			@Optional("false") boolean isHeadless) {
 		WebDriver remoteLambdadriver;
 
 		this.isLambdaTest = isLambdaTest;
 		if (isLambdaTest) {
-
+			
 			remoteLambdadriver = LambdaTestUtility.initializeLambdaTestSession(browser,
 					result.getMethod().getMethodName());
 			homePage = new HomePage(remoteLambdadriver);
@@ -36,7 +37,8 @@ public class TestBase {
 
 			// Running locally
 			logger.info("Load the homepage");
-			homePage = new HomePage(Browser.valueOf(browser.toUpperCase()), isHeadless);
+		
+			homePage = new HomePage(Browser.CHROME, isHeadless);
 		}
 
 	}

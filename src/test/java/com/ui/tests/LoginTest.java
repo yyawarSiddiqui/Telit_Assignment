@@ -19,23 +19,23 @@ public class LoginTest extends TestBase {
 	 * 5. Atleast one assertion
 	 */
 
-	@Test(description = "Verify user is able to login with valid Creds", groups = { "e2e",
-			"sanity" }, dataProviderClass = com.ui.dataproviders.LoginDataProvider.class, dataProvider = "LoginTestDataProvider")
-	public void loginTest(User user) {
-
-		String userName = homePage.goToLoginPage().doLoginWith(user.getEmailAddress(), user.getPassword())
-				.getUsername();
-		assertEquals(userName, "Jatin Sharma");
-	}
-
-//	@Test(description = "Verify user is able to login with valid Creds", groups = { "e2e",
-//			"sanity" }, dataProviderClass = com.ui.dataproviders.LoginDataProvider.class, dataProvider = "LoginTestCSVDataProvider")
-//	public void loginCSVtest(User user) {
+	//@Test(description = "Verify user is able to login with valid Creds", groups = { "e2e",
+		//	"sanity" }, dataProviderClass = com.ui.dataproviders.LoginDataProvider.class, dataProvider = "LoginTestDataProvider")
+//	public void loginTest(User user) {
 //
 //		String userName = homePage.goToLoginPage().doLoginWith(user.getEmailAddress(), user.getPassword())
 //				.getUsername();
 //		assertEquals(userName, "Jatin Sharma");
 //	}
+
+	@Test(description = "Verify user is able to login with valid Creds", groups = { "e2e",
+			"sanity" }, dataProviderClass = com.ui.dataproviders.LoginDataProvider.class, dataProvider = "LoginTestCSVDataProvider")
+	public void loginCSVtest(User user) {
+
+		String userName = homePage.goToLoginPage().doLoginWith(user.getEmailAddress(), user.getPassword())
+				.getUsername();
+		assertEquals(userName, "Jatin Sharma");
+	}
 //
 //	@Test(description = "Verify user is able to login with valid Creds", groups = { "e2e",
 //			"sanity" }, dataProviderClass = com.ui.dataproviders.LoginDataProvider.class, dataProvider = "LoginTestExcelDataProvider", retryAnalyzer = com.ui.listeners.MyRetryAnalyzer.class)
