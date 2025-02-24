@@ -1,9 +1,8 @@
-
 name: Test Automation Workflow
 
 on:
   schedule:
-  - cron: 30 12 * * *
+    - cron: "30 12 * * *"
   push:
     branches: [ "master" ]
   pull_request:
@@ -11,24 +10,37 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v4
-    - name: Set up JDK 17
-      uses: actions/setup-java@v4
-      with:
-        java-version: '17'
-        distribution: 'temurin'
-        cache: maven
+      - uses: actions/checkout@v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+          cache: maven
+
+      - name: Running Test Automation Framework With Maven
+        run: mvn test -X -Dbrowser=browser -DisLambdaTest=false -DisHeadless=true
+
+      - name: Upload Test Logs
+        if: always()
         
-    - name: Running Test Automation Framework With Maven
-      run: mvn test -X -Dbrowser=browser -DisLambdaTest=false -DisHeadless=true
+        uses: actions/upload-artifact@v4.6.1
+        with:
+          name: Test logs
+          path: logs/
 
-    - name: Upload a Build Artifact
+      - name: Upload Test Reports
+        if: always()
+        
+        uses: actions/upload-artifact@v4.6.1
+        with:
+          name: Test logs
+          path: Report.html
 
+      - name: Test Execution Report
+        run: echo "Test Execution Completed"
 
-
-
-    
