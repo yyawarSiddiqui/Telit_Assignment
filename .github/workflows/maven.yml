@@ -23,7 +23,7 @@ jobs:
           cache: maven
 
       - name: Running Test Automation Framework With Maven
-        run: mvn test  -Dbrowser=browser -DisLambdaTest=false -DisHeadless=true
+        run: mvn test  -Dbrowser=chrome -DisLambdaTest=false -DisHeadless=true
 
       - name: Upload Test Logs
         if: always()
