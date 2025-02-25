@@ -31,7 +31,8 @@ public class LoginTest extends TestBase {
 	@Test(description = "Verify user is able to login with valid Creds", groups = { "e2e",
 			"sanity" }, dataProviderClass = com.ui.dataproviders.LoginDataProvider.class, dataProvider = "LoginTestCSVDataProvider")
 	public void loginCSVtest(User user) {
-
+		
+	
 		String userName = homePage.goToLoginPage().doLoginWith(user.getEmailAddress(), user.getPassword())
 				.getUsername();
 		assertEquals(userName, "Jatin Sharma");
