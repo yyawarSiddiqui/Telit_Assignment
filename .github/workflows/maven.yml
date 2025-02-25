@@ -25,7 +25,7 @@ jobs:
         cache: maven
         
     - name: Running Test Automation Framework with Maven
-      run: mvn test -Dbrowser=chrome -DisLambdaTest=true -DisHeadless=false
+      run: mvn test -Dbrowser=chrome -DisLambdaTest=false -DisHeadless=false
      
     - name: Upload  Test logs
       if: always()
@@ -46,7 +46,7 @@ jobs:
       uses: actions/upload-artifact@v4.4.3
       with:
         name: html-report
-        path: report.html
+        path: Report.html
        
     - name: Test Execution Status
       if: always()
