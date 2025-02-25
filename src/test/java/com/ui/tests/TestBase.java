@@ -32,6 +32,7 @@ public class TestBase {
 		this.isLambdaTest = isLambdaTest;
 		if (isLambdaTest) {
 			
+			
 			remoteLambdadriver = LambdaTestUtility.initializeLambdaTestSession(browser,
 					result.getMethod().getMethodName());
 			homePage = new HomePage(remoteLambdadriver);
