@@ -4,9 +4,11 @@ import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
@@ -23,6 +25,7 @@ import com.constants.Browser;
 public abstract class BrowserUtility {
 
 	private static ThreadLocal<WebDriver> driver = new ThreadLocal<WebDriver>();
+	
 
 	public WebDriver getDriver() {
 		return driver.get();
@@ -42,7 +45,7 @@ public abstract class BrowserUtility {
 				ChromeOptions chromeOptions = new ChromeOptions();
 				chromeOptions.addArguments("--headless=new");
 				chromeOptions.addArguments("--window-size=1920,1080");
-			//	chromeOptions.addArguments("disable-gpu");
+				chromeOptions.addArguments("disable-gpu");
 
 				driver.set(new ChromeDriver(chromeOptions));
 			} else {
@@ -112,9 +115,32 @@ public abstract class BrowserUtility {
 		driver.get().findElement(Locator).sendKeys(Text);
 	}
 
+	public void enterTextbySpecialKey(By Locator, Keys keyToEnter) {
+
+		driver.get().findElement(Locator).sendKeys(keyToEnter);
+	}
+
 	public String getVisibleText(By Locator) {
 
 		return driver.get().findElement(Locator).getText();
+	}
+	
+	public String getAllVisibleText(By Locator) {
+
+		List<WebElement> elements =driver.get().findElements(Locator);
+		
+		for(WebElement elem:elements) {
+			
+		return getVisibleText(elem);
+			
+		}
+		return "";
+	}
+	
+	
+	public String getVisibleText(WebElement element) {
+
+		return element.getText();
 	}
 
 	public String takesScreenshot(String name) {

@@ -9,7 +9,6 @@ import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 
 import com.constants.Browser;
-import com.constants.Browser.*;
 import com.ui.pages.HomePage;
 
 import com.utility.*;
@@ -22,7 +21,7 @@ public class TestBase {
 
 	@Parameters({ "browser", "isLambdaTest", "isHeadless" })
 	@BeforeMethod
-	public void setup(@Optional("chrome") String browser, 
+	public void setup(@Optional("CHROME") String browser, 
 			ITestResult result, 
 			@Optional("false") boolean isLambdaTest,
 			@Optional("false") boolean isHeadless) {
@@ -44,6 +43,7 @@ public class TestBase {
 			logger.info("Load the homepage");
 			
 			homePage = new HomePage(Browser.valueOf(browser.toUpperCase()), isHeadless);
+			
 		}
 
 	}

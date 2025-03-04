@@ -23,7 +23,7 @@
 					</suiteXmlFiles>
 
 					<systemPropertyVariables>
-						<browser>chrome</browser>
+						<browser>${browser}</browser>
 						<isLambdaTest>${isLambdaTest}</isLambdaTest>
 						<isHeadless>${isHeadless}</isHeadless>
 					</systemPropertyVariables>
