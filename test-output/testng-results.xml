@@ -2,18 +2,18 @@
 <testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2025-03-04T14:39:40 IST" name="Default suite" finished-at="2025-03-04T14:40:03 IST" duration-ms="22964">
+  <suite started-at="2025-03-05T14:01:41 IST" name="Default suite" finished-at="2025-03-05T14:01:51 IST" duration-ms="10539">
     <groups>
       <group name="sanity">
-        <method signature="SearchProductTest.verifyProductSearch()[pri:0, instance:com.ui.tests.SearchProductTest@16eccb2e]" name="verifyProductSearch" class="com.ui.tests.SearchProductTest"/>
+        <method signature="productCheckoutTest.CheckoutTest()[pri:0, instance:com.ui.tests.productCheckoutTest@4671115f]" name="CheckoutTest" class="com.ui.tests.productCheckoutTest"/>
       </group> <!-- sanity -->
       <group name="e2e">
-        <method signature="SearchProductTest.verifyProductSearch()[pri:0, instance:com.ui.tests.SearchProductTest@16eccb2e]" name="verifyProductSearch" class="com.ui.tests.SearchProductTest"/>
+        <method signature="productCheckoutTest.CheckoutTest()[pri:0, instance:com.ui.tests.productCheckoutTest@4671115f]" name="CheckoutTest" class="com.ui.tests.productCheckoutTest"/>
       </group> <!-- e2e -->
     </groups>
-    <test started-at="2025-03-04T14:39:40 IST" name="Default test" finished-at="2025-03-04T14:40:03 IST" duration-ms="22964">
-      <class name="com.ui.tests.SearchProductTest">
-        <test-method is-config="true" signature="setup(java.lang.String,org.testng.ITestResult,boolean,boolean)[pri:0, instance:com.ui.tests.SearchProductTest@16eccb2e]" started-at="2025-03-04T14:39:40 IST" name="setup" finished-at="2025-03-04T14:40:00 IST" duration-ms="19298" status="PASS">
+    <test started-at="2025-03-05T14:01:41 IST" name="Default test" finished-at="2025-03-05T14:01:51 IST" duration-ms="10539">
+      <class name="com.ui.tests.productCheckoutTest">
+        <test-method is-config="true" signature="setup(java.lang.String,boolean,boolean,org.testng.ITestResult)[pri:0, instance:com.ui.tests.productCheckoutTest@4671115f]" started-at="2025-03-05T14:01:41 IST" name="setup" finished-at="2025-03-05T14:01:48 IST" duration-ms="7184" status="PASS">
           <params>
             <param index="0">
               <value>
@@ -22,7 +22,7 @@
             </param>
             <param index="1">
               <value>
-                <![CDATA[[TestResult name={null} status=CREATED method=SearchProductTest.verifyProductSearch()[pri:0, instance:com.ui.tests.SearchProductTest@16eccb2e] output={null}]]]>
+                <![CDATA[false]]>
               </value>
             </param>
             <param index="2">
@@ -32,26 +32,26 @@
             </param>
             <param index="3">
               <value>
-                <![CDATA[false]]>
+                <![CDATA[[TestResult name={null} status=CREATED method=productCheckoutTest.CheckoutTest()[pri:0, instance:com.ui.tests.productCheckoutTest@4671115f] output={null}]]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method is-config="true" signature="setup()[pri:0, instance:com.ui.tests.SearchProductTest@16eccb2e]" started-at="2025-03-04T14:40:00 IST" name="setup" finished-at="2025-03-04T14:40:02 IST" duration-ms="2396" status="PASS">
+        <test-method is-config="true" signature="setUp()[pri:0, instance:com.ui.tests.productCheckoutTest@4671115f]" started-at="2025-03-05T14:01:48 IST" name="setUp" description="User logs in to the application and search for product" finished-at="2025-03-05T14:01:51 IST" duration-ms="3102" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- setup -->
-        <test-method signature="verifyProductSearch()[pri:0, instance:com.ui.tests.SearchProductTest@16eccb2e]" started-at="2025-03-04T14:40:02 IST" name="verifyProductSearch" description="Searching the Product page with Valid Credentials and Correct Products" finished-at="2025-03-04T14:40:03 IST" duration-ms="1077" status="PASS">
+        </test-method> <!-- setUp -->
+        <test-method signature="CheckoutTest()[pri:0, instance:com.ui.tests.productCheckoutTest@4671115f]" started-at="2025-03-05T14:01:51 IST" name="CheckoutTest" description="Verify if the user is able to buy a dress" finished-at="2025-03-05T14:01:51 IST" duration-ms="5" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- verifyProductSearch -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:com.ui.tests.SearchProductTest@16eccb2e]" started-at="2025-03-04T14:40:03 IST" name="tearDown" finished-at="2025-03-04T14:40:03 IST" duration-ms="0" status="PASS">
+        </test-method> <!-- CheckoutTest -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:com.ui.tests.productCheckoutTest@4671115f]" started-at="2025-03-05T14:01:51 IST" name="tearDown" finished-at="2025-03-05T14:01:51 IST" duration-ms="216" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
-      </class> <!-- com.ui.tests.SearchProductTest -->
+      </class> <!-- com.ui.tests.productCheckoutTest -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>

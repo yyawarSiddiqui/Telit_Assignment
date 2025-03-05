@@ -3,6 +3,8 @@ package com.utility;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.time.Duration;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -19,13 +21,17 @@ import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.constants.Browser;
 
 public abstract class BrowserUtility {
 
 	private static ThreadLocal<WebDriver> driver = new ThreadLocal<WebDriver>();
-	
+	private WebDriverWait wait;
 
 	public WebDriver getDriver() {
 		return driver.get();
@@ -34,6 +40,7 @@ public abstract class BrowserUtility {
 	public BrowserUtility(WebDriver driver) {
 		super();
 		this.driver.set(driver);
+		wait = new WebDriverWait(driver, Duration.ofSeconds(5));
 
 	}
 
@@ -48,9 +55,11 @@ public abstract class BrowserUtility {
 				chromeOptions.addArguments("disable-gpu");
 
 				driver.set(new ChromeDriver(chromeOptions));
+				wait = new WebDriverWait(driver.get(), Duration.ofSeconds(10));
 			} else {
 
 				driver.set(new ChromeDriver());
+				wait = new WebDriverWait(driver.get(), Duration.ofSeconds(10));
 			}
 
 		} else if (BrowserName == Browser.EDGE) {
@@ -62,9 +71,11 @@ public abstract class BrowserUtility {
 				EdgeOptions.addArguments("disable-gpu");
 
 				driver.set(new EdgeDriver(EdgeOptions));
+				wait = new WebDriverWait(driver.get(), Duration.ofSeconds(10));
 			} else {
 
 				driver.set(new EdgeDriver());
+				wait = new WebDriverWait(driver.get(), Duration.ofSeconds(10));
 			}
 		}
 
@@ -77,9 +88,11 @@ public abstract class BrowserUtility {
 				FireOptions.addArguments("disable-gpu");
 
 				driver.set(new FirefoxDriver(FireOptions));
+				wait = new WebDriverWait(driver.get(), Duration.ofSeconds(10));
 			} else {
 
 				driver.set(new FirefoxDriver());
+				wait = new WebDriverWait(driver.get(), Duration.ofSeconds(10));
 			}
 
 		} else {
@@ -106,38 +119,52 @@ public abstract class BrowserUtility {
 
 	public void clickOn(By Locator) {
 
-		WebElement Elem = driver.get().findElement(Locator);
-		Elem.click();
+		wait.until(ExpectedConditions.elementToBeClickable(Locator)).click();
+	}
+
+	public void selectFromDropDown(By DropDownLocator, String textToSelect) {
+		WebElement element = driver.get().findElement(DropDownLocator);
+		Select select = new Select(element);
+		select.selectByVisibleText(textToSelect);
+
 	}
 
 	public void enterText(By Locator, String Text) {
 
-		driver.get().findElement(Locator).sendKeys(Text);
+		// driver.get().findElement(Locator).sendKeys(Text);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(Locator)).sendKeys(Text);
 	}
 
 	public void enterTextbySpecialKey(By Locator, Keys keyToEnter) {
 
-		driver.get().findElement(Locator).sendKeys(keyToEnter);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(Locator)).sendKeys(keyToEnter);
 	}
 
 	public String getVisibleText(By Locator) {
 
-		return driver.get().findElement(Locator).getText();
+		// driver.get().findElement(Locator).getText();
+		return wait.until(ExpectedConditions.visibilityOfElementLocated(Locator)).getText();
 	}
-	
-	public String getAllVisibleText(By Locator) {
 
-		List<WebElement> elements =driver.get().findElements(Locator);
-		
-		for(WebElement elem:elements) {
-			
-		return getVisibleText(elem);
-			
+	public List<String> getAllVisibleText(By Locator) {
+
+		List<WebElement> elements = wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(Locator));
+		List<String> visibleTextList = new ArrayList<String>();
+		for (WebElement elem : elements) {
+
+			visibleTextList.add(getVisibleText(elem));
+
 		}
-		return "";
+		return visibleTextList;
 	}
-	
-	
+
+	public List<WebElement> getAllElement(By Locator) {
+
+		List<WebElement> elements = wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(Locator));
+
+		return elements;
+	}
+
 	public String getVisibleText(WebElement element) {
 
 		return element.getText();

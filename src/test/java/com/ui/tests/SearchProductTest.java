@@ -1,5 +1,6 @@
 package com.ui.tests;
 
+import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
@@ -21,8 +22,10 @@ public class SearchProductTest extends TestBase {
 			"sanity" })
 	public void verifyProductSearch() {
 
-		String data = myAccount.searchforProduct("Printed Summer Dress").getTitle();
-		System.out.println(data);
+		Boolean isProductPresent = myAccount.searchforProduct("Printed Summer Dress").isSearchTermPresentInProductList("Printed Summer Dress");
+		Assert.assertEquals(isProductPresent, true);
 	}
+	
+	
 
 }

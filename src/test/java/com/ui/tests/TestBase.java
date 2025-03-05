@@ -21,17 +21,14 @@ public class TestBase {
 
 	@Parameters({ "browser", "isLambdaTest", "isHeadless" })
 	@BeforeMethod
-	public void setup(@Optional("CHROME") String browser, 
-			ITestResult result, 
-			@Optional("false") boolean isLambdaTest,
-			@Optional("false") boolean isHeadless) {
-		
+	public void setup(@Optional("CHROME") String browser, @Optional("false") boolean isLambdaTest,
+			@Optional("false") boolean isHeadless, ITestResult result) {
+
 		WebDriver remoteLambdadriver;
 
 		this.isLambdaTest = isLambdaTest;
 		if (isLambdaTest) {
-			
-			
+
 			remoteLambdadriver = LambdaTestUtility.initializeLambdaTestSession(browser,
 					result.getMethod().getMethodName());
 			homePage = new HomePage(remoteLambdadriver);
@@ -41,9 +38,9 @@ public class TestBase {
 
 			// Running locally
 			logger.info("Load the homepage");
-			
+
 			homePage = new HomePage(Browser.valueOf(browser.toUpperCase()), isHeadless);
-			
+
 		}
 
 	}
@@ -54,14 +51,14 @@ public class TestBase {
 		return homePage;
 	}
 
-	@AfterMethod
+	@AfterMethod(alwaysRun = true)
 	public void tearDown() {
 
 		if (isLambdaTest) {
 			LambdaTestUtility.quitSession();
 		} else {
 
-			homePage.quit();
+			homePage.quitBrowser();
 		}
 	}
 }

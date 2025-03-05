@@ -10,8 +10,7 @@ public final class MyAccount extends BrowserUtility {
 
 	private static final By USER_NAME_LOCATOR = By.xpath("//a[@title='View my customer account']");
 	private static final By SEARCH_NAME_LOCATOR = By.id("search_query_top");
-
-
+	private static final By ADDRESS_LOCATOR = By.xpath("//a[@title='Add my first address']");
 
 	public MyAccount(WebDriver driver) {
 		super(driver);
@@ -29,6 +28,13 @@ public final class MyAccount extends BrowserUtility {
 		enterTextbySpecialKey(SEARCH_NAME_LOCATOR, Keys.ENTER);
 		return searchResultPage;
 
+	}
+
+	public AddressPage gotoAddressPage() {
+
+		clickOn(ADDRESS_LOCATOR);
+
+		return new AddressPage(getDriver());
 	}
 
 }

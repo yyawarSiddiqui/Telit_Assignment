@@ -21,7 +21,6 @@ public class JSONUtility {
 
 		try {
 			fileReader = new FileReader(jsonFile);
-			System.out.println(jsonFile.toString());
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
